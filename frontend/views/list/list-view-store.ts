@@ -23,6 +23,14 @@ class ListViewStore {
     this.selectedContact = contact;
   }
 
+  editNew() {
+    this.selectedContact = ContactModel.createEmptyValue();
+  }
+  
+  cancelEdit() {
+    this.selectedContact = null;
+  }
+
   get filteredContacts() {
     const filter = new RegExp(this.filterText, 'i');
     const contacts = crmStore.contacts;

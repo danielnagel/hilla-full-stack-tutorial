@@ -21,7 +21,7 @@ export class ListView extends View {
           clear-button-visible
         >
         </vaadin-text-field>
-        <vaadin-button>Add Contact</vaadin-button>
+        <vaadin-button @click=${listViewStore.editNew}>Add Contact</vaadin-button>
       </div>
       <div class="content flex gap-m h-full">
         <vaadin-grid
@@ -36,7 +36,10 @@ export class ListView extends View {
           <vaadin-grid-column path="status.name" header="Status" auto-width></vaadin-grid-column>
           <vaadin-grid-column path="company.name" header="Company" auto-width></vaadin-grid-column>
         </vaadin-grid>
-        <contact-form class="flex flex-col gap-s"></contact-form>
+        <contact-form
+          class="flex flex-col gap-s"
+          ?hidden=${!listViewStore.selectedContact}
+        ></contact-form>
       </div>
     `;
   }
@@ -62,5 +65,12 @@ export class ListView extends View {
       'w-full',
       'h-full'
     );
+    this.autorun(() => {
+      if (listViewStore.selectedContact) {
+        this.classList.add("editing");
+      } else {
+        this.classList.remove("editing");
+      }
+    });
   }
 }

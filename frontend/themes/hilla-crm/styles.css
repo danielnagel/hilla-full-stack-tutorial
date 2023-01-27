@@ -3,3 +3,18 @@
 list-view contact-form {
     width: 25em;
 }
+
+[hidden] {
+    display: none !important;
+  }
+  
+  @media (max-width: 700px) {
+    list-view.editing .toolbar,
+    list-view.editing .grid {
+      display: none;
+    }
+  
+    list-view.editing contact-form {
+      width: 100%;
+    }
+  }
