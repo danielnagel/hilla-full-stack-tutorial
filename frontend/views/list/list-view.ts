@@ -8,6 +8,8 @@ import '@vaadin/grid/vaadin-grid-column';
 import './contact-form';
 import { crmStore } from 'Frontend/stores/app-store';
 import { listViewStore } from './list-view-store';
+import '@vaadin/notification';
+import { uiStore } from 'Frontend/stores/app-store';
 
 @customElement('list-view')
 export class ListView extends View {
@@ -41,6 +43,13 @@ export class ListView extends View {
           ?hidden=${!listViewStore.selectedContact}
         ></contact-form>
       </div>
+      <vaadin-notification
+        theme=${uiStore.message.error ? 'error' : 'contrast'}
+        position="bottom-start"
+        .opened=${uiStore.message.open}
+        .renderer=${(root: HTMLElement) =>
+          (root.textContent = uiStore.message.text)}>
+      </vaadin-notification>
     `;
   }
 

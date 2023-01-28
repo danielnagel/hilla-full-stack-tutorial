@@ -56,8 +56,18 @@ export class ContactForm extends View {
       ></vaadin-combo-box>
 
       <div class="flex gap-s">
-        <vaadin-button theme="primary">Save</vaadin-button>
-        <vaadin-button theme="error">Delete</vaadin-button>
+        <vaadin-button
+          theme="primary"
+          @click=${this.save}
+        >
+          ${this.binder.value.id ? 'Save' : 'Create'}
+        </vaadin-button>
+        <vaadin-button
+          theme="error"
+          @click=${listViewStore.delete}
+        >
+          Delete
+        </vaadin-button>
         <vaadin-button
           theme="tertiary"
           @click=${listViewStore.cancelEdit}
@@ -66,5 +76,10 @@ export class ContactForm extends View {
         </vaadin-button>
       </div>
     `;
+  }
+
+  async save() {
+    await this.binder.submitTo(listViewStore.save);
+    this.binder.clear();
   }
 }
