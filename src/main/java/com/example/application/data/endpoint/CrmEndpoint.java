@@ -3,19 +3,20 @@ package com.example.application.data.endpoint;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+
 import com.example.application.data.repository.CompanyRepository;
 import com.example.application.data.repository.ContactRepository;
 import com.example.application.data.repository.StatusRepository;
 import com.example.application.data.entity.Contact;
 import com.example.application.data.entity.Company;
 import com.example.application.data.entity.Status;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 import dev.hilla.Endpoint;
 import dev.hilla.Nonnull;
 
 @Endpoint
-@AnonymousAllowed
+@PermitAll
 public class CrmEndpoint {
 
     private ContactRepository contactRepository;
