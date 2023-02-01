@@ -19,14 +19,6 @@ export const views: ViewRoute[] = [
     icon: 'la la-file',
     title: 'Contacts',
   },
-  {
-    path: "dashboard",
-    component: "dashboard-view",
-    title: "Dashboard",
-    action: async () => {
-      await import("./views/dashboard/dashboard-view");
-    }
-  }
 ];
 
 const authGuard = async (context: Context, commands: Commands) => {
